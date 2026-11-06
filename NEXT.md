@@ -116,6 +116,14 @@ yet" if you cannot tell. Do not delete one. Specific traps go below them.
   `cache-control: max-age=300` (2026-11-06, `curl -sI` on `main/LICENSE`). The publish checks
   do not read it. Other caches not checked.
 
+**A docs page checked through a tool that converts or summarizes it.** On 2026-11-06, per the
+owner, a web fetch tool's converted rendering of `code.claude.com/docs/en/headless` dropped the
+sentence "Hooks still don't run in bare mode when you pass them with `--settings`", and the
+reviewer reported the rendering as the page. Raw `curl` fetches that day had the sentence: as
+plain text in `https://code.claude.com/docs/en/headless.md`, and in the script payload of the
+HTML at `https://code.claude.com/docs/en/headless`. Recognise it by a claim about a docs page,
+either way, that rests on a converted or summarized copy. Check the raw page.
+
 ## Decided, do not redo
 
 What was settled and why, what was ruled out and why, and anything the owner said not to
@@ -156,29 +164,32 @@ release or deploy goes to the Committed, pushed, released section, with its date
 was checked, and anything else, such as a change made on a hosted service, goes to the
 section it belongs in.
 
-Nothing. The design proposal is in the commit carrying this file, and nothing from it is built.
+Nothing. The design proposal is committed at `66643b0`, and nothing from it is built.
 
 ## Queued, unscheduled, and not to be started unprompted
 
 What is agreed but waiting, with a pointer to wherever the full proposal is written out.
 
-- The harness. The proposal is `docs/DESIGN.md`.
+- The harness. The proposal is `docs/DESIGN.md`. No script, fixture or session exists. Its first
+  paid step is the smoke run in section 7, and no run count is set until the owner has read that
+  run's cost.
 
 ## Committed, pushed, released: three separate questions
 
 As of 2026-11-06, when this was written.
 
-**Uncommitted.** Nothing apart from the design proposal and its index entries, which are in the
-commit carrying this file.
+**Uncommitted.** Nothing apart from this save-state edit to this file, which is in the commit
+carrying it.
 
 **Unpushed.** `git rev-list --left-right --count origin/main...main`, left = behind,
-right = unpushed. Snapshot, not to be trusted: on 2026-11-06 GitHub's main was `4507855`, and
+right = unpushed. Snapshot, not to be trusted: on 2026-11-06 GitHub's main was `66643b0`, and
 local main had the commit carrying this sentence ahead of it.
 
 **Unreleased or undeployed.** Publishing is pushing to main, so nothing committed is
-unreleased unless it is also unpushed. GitHub's main was `4507855` on 2026-11-06, holding
-`.claude/settings.json`, `CLAUDE.md`, `HOWTOSAVESTATE.md`, `LICENSE`, `NEXT.md` and `README.md`
-(`git ls-remote` by URL and `gh api` on the tree). No separate release or deploy exists.
+unreleased unless it is also unpushed. GitHub's main was `66643b0` on 2026-11-06, holding
+`.claude/settings.json`, `CLAUDE.md`, `HOWTOSAVESTATE.md`, `LICENSE`, `NEXT.md`, `README.md` and
+`docs/DESIGN.md` (`git ls-remote` by URL and `gh api` on the tree). No separate release or
+deploy exists.
 
 ## Open, not blocking
 
@@ -196,3 +207,8 @@ text. Open questions:
   headless, settings, hooks, env-vars and permissions docs do not say (fetched 2026-11-06).
   The permissions docs say a project's `env` block still applies under `--bare`, so settings
   files are not skipped outright.
+
+**Checked and not checked (2026-11-06).** project-kit's main was `b9b192e` (`gh api`). `claude
+--version` was 2.1.319. This project's stored memories directory was empty. No test suite exists.
+Not checked: anything in `docs/DESIGN.md` by running it, whether an API key is set up for the
+harness, and the owner's report of the converted rendering in Traps, which no session here saw.
