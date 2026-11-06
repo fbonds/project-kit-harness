@@ -56,6 +56,10 @@ It holds only the title so far. Working state belongs in `NEXT.md`, not here.
 
 **4. `LICENSE`, the MIT-0 license text.** Holds the license and nothing else.
 
+**5. `docs/DESIGN.md`, the harness design proposal.** Written for the owner and for any session
+building the harness. It holds the fixtures, arms, command line, grading and output. Working
+state belongs in `NEXT.md`, not here.
+
 ## Step 1: check the external world, now
 
 Nothing here is trusted from memory or from an earlier answer in the session. Record the

@@ -21,8 +21,8 @@ fixture repositories with failures planted before each run, with and without the
 grades them. Fixture files are never named CLAUDE.md, so they cannot load into sessions
 working on this repo. Publishing is pushing to main on GitHub.
 
-None of the harness is built yet. No design document or roadmap exists. `README.md` is the
-public documentation and holds only the title.
+None of the harness is built yet. `docs/DESIGN.md` is the design proposal. No roadmap exists.
+`README.md` is the public documentation and holds only the title.
 
 ## Standards
 
@@ -141,6 +141,13 @@ stored memories present.
 
 **2026-11-06, owner's decision: MIT-0.** Reason: it matches project-kit.
 
+**2026-11-06, owner's decision: the control arm's opener is "Read NEXT.md and report the state of
+this project."** Reason: the control has no `CLAUDE.md` to name a file or ask for a report, so
+the opener does both. Each arm's opener names one file and neither mentions checking, staleness
+or verification, so an instruction to re-check can reach a session only through the kit's files,
+and those are what is under test. The fact lines are identical in both arms, so both face the
+same false statement.
+
 ## In flight
 
 What is being worked on now, and what state it is in. Remove an item when it is finished,
@@ -149,30 +156,29 @@ release or deploy goes to the Committed, pushed, released section, with its date
 was checked, and anything else, such as a change made on a hosted service, goes to the
 section it belongs in.
 
-Nothing. The template fill is in the commit carrying this file.
+Nothing. The design proposal is in the commit carrying this file, and nothing from it is built.
 
 ## Queued, unscheduled, and not to be started unprompted
 
 What is agreed but waiting, with a pointer to wherever the full proposal is written out.
 
-- The harness, not designed in detail. The outline is in project-kit's `NEXT.md`, Queued,
-  "Test harness for the kit", at `b9b192e`.
+- The harness. The proposal is `docs/DESIGN.md`.
 
 ## Committed, pushed, released: three separate questions
 
 As of 2026-11-06, when this was written.
 
-**Uncommitted.** Nothing apart from the template fill, which is in the commit carrying this
-file.
+**Uncommitted.** Nothing apart from the design proposal and its index entries, which are in the
+commit carrying this file.
 
 **Unpushed.** `git rev-list --left-right --count origin/main...main`, left = behind,
-right = unpushed. Snapshot, not to be trusted: on 2026-11-06 GitHub's main was `06ed107`, and
+right = unpushed. Snapshot, not to be trusted: on 2026-11-06 GitHub's main was `4507855`, and
 local main had the commit carrying this sentence ahead of it.
 
 **Unreleased or undeployed.** Publishing is pushing to main, so nothing committed is
-unreleased unless it is also unpushed. GitHub's main was `06ed107` on 2026-11-06, holding
-`LICENSE` and `README.md` (`git ls-remote` by URL and `gh api` on the tree). No separate
-release or deploy exists.
+unreleased unless it is also unpushed. GitHub's main was `4507855` on 2026-11-06, holding
+`.claude/settings.json`, `CLAUDE.md`, `HOWTOSAVESTATE.md`, `LICENSE`, `NEXT.md` and `README.md`
+(`git ls-remote` by URL and `gh api` on the tree). No separate release or deploy exists.
 
 ## Open, not blocking
 
@@ -181,12 +187,11 @@ Anything known, unresolved, and not in the way.
 **`--bare` and the kit (2026-11-06, unverified, no session run).** Under `--bare`, the kit
 takes effect only through the opener "Read CLAUDE.md and comply", which is the README's
 protocol and intended. The arms still differ, because only the with-kit fixture has the kit's
-files. Open questions:
+text. Open questions:
 
 - Whether hooks supplied with `--settings` fire under `--bare`, so the optional SessionStart
   hook can be tested. The headless docs say they do not (`https://code.claude.com/docs/en/headless.md`,
   fetched 2026-11-06).
-- What the control arm's opener is, since it has no CLAUDE.md.
 - Whether `--bare` skips user settings. `claude --help` (2.1.319) and the CLI reference,
   headless, settings, hooks, env-vars and permissions docs do not say (fetched 2026-11-06).
   The permissions docs say a project's `env` block still applies under `--bare`, so settings
