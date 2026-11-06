@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git push *)",
+      "Bash(git add -A *)",
+      "Bash(git add --all *)",
+      "Bash(git add . *)",
+      "Bash(git commit -a *)",
+      "Bash(git commit -am *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && echo 'SessionStart re-check, run before NEXT.md is read:' && { GIT_TERMINAL_PROMPT=0 git fetch -q origin || echo 'git fetch failed: the counts below are against the last fetch'; } && git status -sb && echo \"behind, unpushed: $(git rev-list --left-right --count origin/main...main)\" && grep -m1 '^Updated' NEXT.md",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
